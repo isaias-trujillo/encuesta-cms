@@ -2,9 +2,12 @@ import {FC, useEffect, useState} from "react";
 import {cn, RadioGroup} from "@nextui-org/react";
 import Option from "./../option";
 import QuestionType from "../../types/QuestionType";
+import IndicatorType from "../../types/IndicatorType";
 
 
-const Question: FC<QuestionType> = ({uuid, question, options}) => {
+const Question: FC<QuestionType & {
+    indicator: IndicatorType['uuid']
+}> = ({uuid, question, options, indicator}) => {
     const marked = options?.find(o => !!o?.selected);
     const [optionId, setOptionId] = useState(marked?.uuid);
 
@@ -18,7 +21,7 @@ const Question: FC<QuestionType> = ({uuid, question, options}) => {
             method: 'POST',
             headers: {'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*"},
             body: JSON.stringify({
-                todo: `Sending question id: ${uuid} with option id: ${optionId}`,
+                todo: `Sending indicator id: ${indicator}, question id: ${uuid} with option id: ${optionId}`,
                 completed: true,
                 userId: 5,
             }),
@@ -27,13 +30,16 @@ const Question: FC<QuestionType> = ({uuid, question, options}) => {
             .then(r => console.log(r))
             .catch((e) => console.log(`Aborted: ${controller.signal.aborted}, error: ${e}`))
         return () => controller.abort();
-    }, [optionId])
+    }, [indicator, optionId, uuid])
 
     return (
         <RadioGroup
             label={question}
             defaultValue={marked?.uuid}
-            onValueChange={setOptionId}
+            onValueChange={(v) => {
+                console.log({option: v})
+                setOptionId(() => v);
+            }}
             orientation="horizontal"
             classNames={{
                 base: cn("flex"),

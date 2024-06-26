@@ -4,8 +4,7 @@ import OptionType from "../../types/OptionType";
 
 const Option: FC<OptionType> = ({uuid, name, weight}) => {
     return <Radio
-        lang="es-ES"
-        value={`${uuid}`}
+        value={uuid}
         color="default"
         className="flex sm:flex-col-reverse place-content-center rounded-xl max-sm:p-2.5 sm:gap-2.5" classNames={{
         base: cn(

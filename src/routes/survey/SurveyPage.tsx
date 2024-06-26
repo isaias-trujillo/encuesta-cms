@@ -14,17 +14,13 @@ type Props = {
 const SurveyPage: FC<Props> = ({survey, options}) => {
     const id = useId();
     const maxPages = useMemo(() => {
-        console.log("Computing max pages")
         return Math.ceil(survey.indicators.map(({questions}) => questions.length)
             .reduce((acc, curr) => acc + curr, 0) / 5)
-    }, []);
+    }, [survey.indicators]);
     const [page, setPages] = useState(1);
     const slices = useMemo(() => {
-        console.log("Computing slices")
         return getQuestionsOfPage(survey, 5, page)
-    }, [page]);
-
-    console.log({page})
+    }, [page, survey]);
 
     return (
         <div className="flex flex-col p-5 max-w-screen-lg">
@@ -33,7 +29,7 @@ const SurveyPage: FC<Props> = ({survey, options}) => {
                 {slices.map((indicator, index) => <Card
                     key={`indicator-card-${id}-${index}`}
                     indicator={indicator}
-                    questions={indicator?.questions?.map(q => ({...q, options: [...options]}))}
+                    questions={indicator?.questions?.map(q => ({...q, options: [...options.copyWithin(0, 0, options.length)]}))}
                 />)}
             </div>
             <div className={page === 1 ? "flex justify-end" : "flex justify-between"}>
