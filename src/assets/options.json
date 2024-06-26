@@ -1,0 +1,27 @@
+[
+  {
+    "weight": "1",
+    "uuid": "9a1385fe-62f1-4453-b7c9-1e4138a7a223",
+    "name": "Totalmente en desacuerdo"
+  },
+  {
+    "weight": "2",
+    "uuid": "c63761e6-0be1-4e40-b52c-96438bd7c60d",
+    "name": "En desacuerdo"
+  },
+  {
+    "weight": "3",
+    "uuid": "fff05a86-ff85-4a42-849b-42513a48d392",
+    "name": "Ni de acuerdo ni en desacuerdo"
+  },
+  {
+    "weight": "4",
+    "uuid": "c216823b-6a4e-4f55-806d-6fc2044e73a6",
+    "name": "De acuerdo"
+  },
+  {
+    "weight": "5",
+    "uuid": "4014548a-78c1-4957-abf7-487168bc2dea",
+    "name": "Totalmente de acuerdo"
+  }
+]
