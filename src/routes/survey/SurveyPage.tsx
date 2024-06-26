@@ -40,7 +40,7 @@ const SurveyPage: FC<Props> = ({survey, options}) => {
                 {page !== 1 && <Button
                     className="text-white font-medium text-base font-['Outfit'] bg-dark-blue px-[25px] py-6 rounded-2xl justify-center items-center gap-2.5 inline-flex  shadow-lg"
                     disabled={page == 1}
-                    startContent={<Image src="/arrow_back_ios_20dp_FILL0_wght400_GRAD0_opsz20.svg"/>}
+                    startContent={<Image src="/icons/arrow_back_ios_20dp_FILL0_wght400_GRAD0_opsz20.svg"/>}
                     onClick={() => setPages((prev) => Math.max(1, prev - 1))}
                 >Back</Button>}
                 <Button
@@ -52,8 +52,8 @@ const SurveyPage: FC<Props> = ({survey, options}) => {
                     onClick={() => setPages(prev => Math.min(maxPages, prev + 1))}
                     endContent={<Image src={
                         page === maxPages
-                            ? "send_20dp_FILL0_wght400_GRAD0_opsz20.svg"
-                            : "/arrow_forward_ios_20dp_FILL0_wght400_GRAD0_opsz20.svg"
+                            ? "/icons/send_20dp_FILL0_wght400_GRAD0_opsz20.svg"
+                            : "/icons/arrow_forward_ios_20dp_FILL0_wght400_GRAD0_opsz20.svg"
                     }/>}
                 >{page == maxPages ? "Send" : "Next"}</Button>
             </div>
