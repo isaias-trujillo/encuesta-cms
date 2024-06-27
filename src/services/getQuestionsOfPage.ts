@@ -1,12 +1,19 @@
 import IndicatorType from "../types/IndicatorType";
 import SurveyType from "../types/SurveyType";
+import OptionType from "../types/OptionType";
 
-const getQuestionsOfPage = (data: SurveyType, questionsPerPage: number, pageNumber: number): IndicatorType[] => {
+const getQuestionsOfPage = (
+    {indicators}: SurveyType,
+    questionsPerPage: number,
+    pageNumber: number,
+    options: OptionType[],
+    answerOf: ({indicator, question}: { indicator: string, question: string }) => string | undefined = () => undefined
+): IndicatorType[] => {
     const paginatedQuestions: IndicatorType[][] = [];
     let currentPage: IndicatorType[] = [];
     let currentQuestionCount = 0;
 
-    data.indicators.forEach(indicator => {
+    indicators.forEach(indicator => {
         let remainingQuestions = [...indicator.questions];
 
         while (remainingQuestions.length > 0) {
@@ -24,7 +31,15 @@ const getQuestionsOfPage = (data: SurveyType, questionsPerPage: number, pageNumb
                 currentPage.push(indicatorToAdd);
             }
 
-            indicatorToAdd?.questions?.push(...questionsToAdd);
+            indicatorToAdd?.questions?.push(...(questionsToAdd).map(q => ({
+                ...q,
+                options: options.map(o => {
+                    if (answerOf({indicator: indicator.uuid, question: q.uuid}) === o.uuid) {
+                        return {...o, selected: true};
+                    }
+                    return o;
+                })
+            })));
             currentQuestionCount += questionsToAdd.length;
             remainingQuestions = remainingQuestions.slice(spaceLeft);
 

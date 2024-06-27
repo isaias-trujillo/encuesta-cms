@@ -1,0 +1,12 @@
+/*include font family Roboto locally*/
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto_Condensed/RobotoCondensed-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto_Condensed/RobotoCondensed-Italic-VariableFont_wght.ttf') format('truetype');
+    font-style: italic;
+}

@@ -5,7 +5,7 @@
     {
       "uuid": "b07a42ef-c3ff-494d-86cf-0086ff6e5d5e",
       "name": "Confianza y Competencia del Personal Médico",
-      "image": "/Hands.svg",
+      "image": "/indicators/Hands.svg",
       "questions": [
         {
           "uuid": "91d739cb-314f-48b6-bbf2-d9a8303ff39b",
@@ -22,7 +22,7 @@
     {
       "uuid": "a04c5239-33fa-4a94-a43e-786326d73fa5",
       "name": "Resolución del Problema de Salud",
-      "image": "/Bulb.svg",
+      "image": "/indicators/Bulb.svg",
       "questions": [
         {
           "uuid": "b67b53c8-5329-4568-8d81-736c4a93b2de",
@@ -34,7 +34,7 @@
     {
       "uuid": "2dabdc6c-c0fa-4e68-975d-0f9bd36ea8d8",
       "name": "Explicación y Comunicación",
-      "image": "/Book.svg",
+      "image": "/indicators/Book.svg",
       "questions": [
         {
           "uuid": "3e858231-0f4f-4ac5-942f-c6fa7ff2021f",
@@ -51,7 +51,7 @@
     {
       "uuid": "b860a4f4-9672-4bf7-9d27-d4b4bb62e923",
       "name": "Trato y Competencia del Personal",
-      "image": "/Woman.svg",
+      "image": "/indicators/Woman.svg",
       "questions": [
         {
           "uuid": "1f4d6f80-06ad-44f0-b8e8-f1c70a26f30b",
@@ -73,10 +73,10 @@
     {
       "uuid": "7743dea0-d5c6-44e1-9248-efea8a3e8c9b",
       "name": "Calidad y Eficiencia de la Atención",
-      "image": "/Save.svg",
+      "image": "/indicators/Save.svg",
       "questions": [
         {
-          "uuid": "¿Considera que el número de profesionales y técnicos en este servicio es el adecuado?",
+          "uuid": "ab1ad886-d16b-4509-9263-02c014c6ed54",
           "question": "¿El médico le atendió respetando el orden de llegada?",
           "weight": "10"
         },
@@ -95,7 +95,7 @@
     {
       "uuid": "e1efe938-ee2a-467d-bcd9-d1f8796a0131",
       "name": "Infraestructura y Equipamiento",
-      "image": "/Vehicle.svg",
+      "image": "/indicators/Vehicle.svg",
       "questions": [
         {
           "uuid": "ec60e923-3e2b-475c-aaad-dd7cd751f9c9",
