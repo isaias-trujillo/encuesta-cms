@@ -9,6 +9,7 @@ const SurveyPage: FC = () => {
     const id = useId();
     const {indicators, page, maxPages, nextPage, previousPage} = useSurvey();
 
+
     return (
         <div className="flex flex-col p-5 max-w-screen-lg">
             <Header/>
@@ -25,7 +26,7 @@ const SurveyPage: FC = () => {
                     disabled={page == 1}
                     startContent={<Image src="/icons/arrow_back_ios_20dp_FILL0_wght400_GRAD0_opsz20.svg"/>}
                     onClick={previousPage}
-                >Back</Button>}
+                >Atrás</Button>}
                 <Button
                     className={
                         `${page === maxPages() ? "bg-gradient-to-tr from-pink-500 to-yellow-500" : "bg-dark-blue"}
@@ -38,7 +39,7 @@ const SurveyPage: FC = () => {
                             ? "/icons/send_20dp_FILL0_wght400_GRAD0_opsz20.svg"
                             : "/icons/arrow_forward_ios_20dp_FILL0_wght400_GRAD0_opsz20.svg"
                     }/>}
-                >{page == maxPages() ? "Send" : "Next"}</Button>
+                >{page == maxPages() ? "Enviar" : "Siguiente"}</Button>
             </div>
         </div>
     );
