@@ -1,0 +1,5 @@
+/*include font family Roboto locally*/
+@font-face {
+    font-family: 'Outfit';
+    src: url('fonts/Outfit/Outfit-VariableFont_wght.ttf') format('truetype');
+}
