@@ -2,7 +2,7 @@ import {FC} from "react";
 import {cn, Radio, Tooltip} from "@nextui-org/react";
 import OptionType from "../../types/OptionType";
 
-const Option: FC<OptionType> = ({uuid, weight, name}) => {
+const Option: FC<OptionType> = ({uuid, weight, name, selected}) => {
     return <Tooltip
         content={name}
         placement='top'
@@ -12,22 +12,22 @@ const Option: FC<OptionType> = ({uuid, weight, name}) => {
 
         <Radio
             value={uuid}
-            color="default"
+            color="secondary"
+            className="hover:bg-app-bg"
             classNames={{
                 base: cn(
-                    "hover:bg-on-container",
                     "max-sm:max-w-9 max-sm:max-h-9",
                     "flex flex-row flex-col-reverse rounded-xl",
                     'max-sm:p-2.5 gap-1.5',
-                    "data-[selected=true]:bg-container",
+                    "data-[selected=true]:bg-secondary-foreground ",
                     'max-sm:shadow-lg max-sm:data-[selected=true]:shadow-none',
-                    'max-sm:data-[selected=true]:border-1 max-sm:data-[selected=true]:border-black'
+                    'max-sm:data-[selected=true]:border-1 max-sm:data-[selected=true]:border-black '
                 ),
-                wrapper: cn("max-sm:hidden"),
+                wrapper: cn("max-sm:hidden "),
                 label: cn("flex mr-1.5 max-sm:-mb-1.5")
             }}
         >
-            {weight}
+            <span className={!selected ? "text-foreground" : "text-secondary"}>{weight}</span>
         </Radio>
     </Tooltip>
 };
