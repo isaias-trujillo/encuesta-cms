@@ -21,8 +21,8 @@ const Question: FC<Props> = ({uuid, question, options, initialAnswer, updateAnsw
             className="flex max-w-full gap-2.5"
             orientation="horizontal"
             classNames={{
-                wrapper: cn("sm:p-2 max-sm:p-1 sm:gap-10 gap-5 max-sm:flex-row flex items-center max-sm:justify-center"),
-                label: cn("text-black text-base max-md:text-sm font-semibold font-['Roboto']")
+                wrapper: cn("sm:p-2 max-sm:p-1 sm:gap-10 gap-5 max-sm:flex-row flex flex-nowrap items-center max-sm:justify-center"),
+                label: cn("text-foreground text-base max-md:text-sm font-semibold font-['Roboto']")
             }}
         >
             <img src="/icons/Embarrassed.svg" alt="Negativo" className="max-sm:max-w-8 max-w-10 sm:hidden"/>

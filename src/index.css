@@ -2,17 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --primary-tone-dark-blue: #11004d;
-    --primary-tone-orange: #FDAB00;
-    --background: #F4F2FA;
-    --container: #FFF0EB;
-    --subtitles: #3A3640;
-    background: var(--background);
-}
 
 body {
-    background: var(--background);
     font-family: 'Roboto', 'system-ui';
     display: grid;
     justify-content: center;

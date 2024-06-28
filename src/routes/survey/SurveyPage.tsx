@@ -3,16 +3,17 @@ import Header from "../../components/header";
 import Card from "../../components/card";
 import {Button, Image} from "@nextui-org/react";
 import useSurvey from "../../stores/useSurvey.ts";
+import ThemeSwitcher from "../../components/ThemeSwitcher.tsx";
 
 
 const SurveyPage: FC = () => {
     const id = useId();
     const {indicators, page, maxPages, nextPage, previousPage} = useSurvey();
 
-
     return (
-        <div className="flex flex-col p-5 max-w-screen-lg">
+        <div className="flex flex-col p-5 max-w-screen-lg bg-app-bg">
             <Header/>
+            <ThemeSwitcher/>
             <div className="flex flex-col gap-4 py-8">
                 {indicators().map((indicator, index) => <Card
                     key={`indicator-card-${id}-${index}`}

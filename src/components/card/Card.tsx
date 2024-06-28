@@ -14,7 +14,7 @@ const Card: FC<Props> = ({indicator, questions = []}) => {
     const key = useId();
     const {updateAnswer, answerOf} = useSurvey();
 
-    return <div className="p-5 bg-white rounded-2xl grid gap-5">
+    return <div className="p-5 bg-background/70 rounded-2xl grid gap-2.5">
         <Indicator {...indicator}/>
         {questions.map((q, index) => <Question
             key={`indicator-${key}-question-${index}`}{...{
