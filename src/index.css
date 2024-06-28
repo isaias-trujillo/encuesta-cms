@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+:root {
+    background: #f3f1f1;
+}
+
 body {
     font-family: 'Roboto', 'system-ui';
     display: grid;

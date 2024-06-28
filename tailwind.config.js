@@ -19,21 +19,29 @@ export default {
                 light: {
                     layout: {},
                     colors: {
-                        'app-bg': '#f4f2fa',
+                        'app-bg': 'hsl(0,7%,95%)',
                         'dark-blue': '#11004d',
                         'bright-orange': '#FDAB00',
                         'container': 'hsl(14,96%,93%)',
                         'on-container': 'hsl(14,96%,97%)',
+                        'secondary': {
+                            DEFAULT: '#802d3e',
+                            foreground: '#ffe2e8',
+                        },
                     }
                 },
                 dark: {
                     layout: {},
                     colors: {
-                        'app-bg': 'hsl(255,44%,10%)',
+                        'app-bg': 'hsl(0,7%,10%)',
                         'dark-blue': '#11004d',
                         'bright-orange': '#FDAB00',
                         'container': 'hsl(41,0%,25%)',
                         'on-container': 'hsla(41,0%,85%, 0.2)',
+                        'secondary': {
+                            DEFAULT: '#ffe2e8',
+                            foreground: '#802d3e',
+                        },
                     }
                 }
             }
