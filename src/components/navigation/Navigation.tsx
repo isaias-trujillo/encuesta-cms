@@ -1,7 +1,7 @@
 import {FC, useMemo} from "react";
 import {Button, Image, Modal, useDisclosure} from "@nextui-org/react";
 import useSurvey from "../../stores/useSurvey.ts";
-import Completed from "../completed";
+import CompletedPage from "../completed";
 
 const Navigation: FC = () => {
     const {page, maxPages, nextPage, previousPage} = useSurvey();
@@ -30,7 +30,7 @@ const Navigation: FC = () => {
                 }/>}
             >{isTheLastPage ? "Enviar" : "Siguiente"}</Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-                <Completed/>
+                <CompletedPage/>
             </Modal>
         </>
     </div>

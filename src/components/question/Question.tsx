@@ -8,7 +8,7 @@ type Props = QuestionType & {
     initialAnswer: string | undefined;
 }
 
-const Question: FC<Props> = ({uuid, question, options, initialAnswer, updateAnswer}) => {
+const Question: FC<Props> = ({id, question, options, initialAnswer, updateAnswer}) => {
     const [selectedOption, setSelectedOption] = useState<string | undefined>(initialAnswer);
     return <div className="flex flex-col gap-2.5">
         <RadioGroup
@@ -28,9 +28,9 @@ const Question: FC<Props> = ({uuid, question, options, initialAnswer, updateAnsw
             <img src="/icons/Embarrassed.svg" alt="Negativo" className="max-sm:max-w-8 max-w-10 sm:hidden"/>
             <span className="max-sm:hidden text-black max-md:text-sm font-normal font-['Roboto']">En desacuerdo</span>
             {options?.map(option => <Option
-                key={`question-${uuid}-option-${option.uuid}`} {...{
+                key={`question-${id}-option-${option.id}`} {...{
                 ...option,
-                selected: selectedOption === option.uuid
+                selected: selectedOption === option.id
             }}/>)}
             <span className="max-sm:hidden text-black max-md:text-sm font-normal font-['Roboto']">De acuerdo</span>
             <img src="/icons/Happy.svg" alt="Positive" className="max-sm:max-w-8 max-w-10 sm:hidden"/>

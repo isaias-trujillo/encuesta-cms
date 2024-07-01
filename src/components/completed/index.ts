@@ -1,1 +1,1 @@
-export {default} from './Completed.tsx'
+export {default} from './CompletedPage.tsx'

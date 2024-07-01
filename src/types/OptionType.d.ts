@@ -1,8 +1,7 @@
 type OptionType = {
-    uuid: string;
+    id: string;
     name: string;
     weight: string;
-    selected?: boolean;
 }
 
 export default OptionType;

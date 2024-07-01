@@ -1,7 +1,7 @@
 import OptionType from "./OptionType";
 
 type QuestionType = {
-    uuid: string;
+    id: string;
     question: string;
     options?: OptionType[];
 }

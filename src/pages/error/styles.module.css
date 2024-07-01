@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+.message {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+}
+
+.spacer {
+    background: #ffb200;
+    width: 14px;
+    height: 30px;
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+/* animate spacer: blink every 1s */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+

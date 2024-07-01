@@ -4,8 +4,13 @@ import getQuestionsOfPage from "../services/getQuestionsOfPage.ts";
 import OptionType from "../types/OptionType";
 import emergencia from './../assets/emergencia.json' with {type: 'json'};
 import options from './../assets/options.json' with {type: 'json'};
+import flattenJson from "../services/flattenJson.ts";
+import verifyIfSurveyIsCompleted from "../services/verifyIfSurveyIsCompleted.ts";
 
 type Survey = {
+    loading: boolean,
+    error: string | undefined,
+    isCompleted: () => Promise<boolean>;
     indicators: () => IndicatorType[];
     options: OptionType[];
     page: number;
@@ -14,9 +19,19 @@ type Survey = {
     previousPage: () => void;
     updateAnswer: ({indicator, question, answer}: { indicator: string, question: string, answer: string }) => void;
     answerOf: ({indicator, question}: { indicator: string, question: string }) => string | undefined;
-}
+};
 
 const useSurvey = create<Survey>((set, get) => ({
+    loading: false,
+    message: undefined,
+    isCompleted: async () => {
+        // get surveyId from URL e.g. /survey?id=1
+        const surveyId = new URLSearchParams(window.location.search).get('id');
+        if (!surveyId) return false;
+        const result = await verifyIfSurveyIsCompleted(surveyId);
+        set(() => ({loading: false, error: result['error'] ?? undefined}));
+        return result['completed'] ?? false;
+    },
     options: options,
     page: parseInt(localStorage.getItem('page') ?? '1'),
     maxPages: () => {
@@ -33,6 +48,7 @@ const useSurvey = create<Survey>((set, get) => ({
             [question]: answer
         }
         localStorage.setItem("answers", JSON.stringify(answers));
+        console.log(flattenJson(answers))
     },
     answerOf: ({indicator, question}) => {
         const answers = localStorage.getItem("answers") || "{}";

@@ -20,10 +20,10 @@ const getQuestionsOfPage = (
             const spaceLeft = questionsPerPage - currentQuestionCount;
             const questionsToAdd = remainingQuestions.slice(0, spaceLeft);
 
-            let indicatorToAdd = currentPage.find(ind => ind.uuid === indicator.uuid);
+            let indicatorToAdd = currentPage.find(ind => ind.id === indicator.id);
             if (!indicatorToAdd) {
                 indicatorToAdd = {
-                    uuid: indicator.uuid,
+                    id: indicator.id,
                     name: indicator.name,
                     image: indicator.image,
                     questions: []
@@ -34,7 +34,7 @@ const getQuestionsOfPage = (
             indicatorToAdd?.questions?.push(...(questionsToAdd).map(q => ({
                 ...q,
                 options: options.map(o => {
-                    if (answerOf({indicator: indicator.uuid, question: q.uuid}) === o.uuid) {
+                    if (answerOf({indicator: indicator.id, question: q.id}) === o.id) {
                         return {...o, selected: true};
                     }
                     return o;

@@ -2,7 +2,7 @@ import {FC} from "react";
 import {cn, Radio, Tooltip} from "@nextui-org/react";
 import OptionType from "../../types/OptionType";
 
-const Option: FC<OptionType> = ({uuid, weight, name, selected}) => {
+const Option: FC<OptionType> = ({id, weight, name, selected}) => {
     return <Tooltip
         content={name}
         placement='top'
@@ -11,7 +11,7 @@ const Option: FC<OptionType> = ({uuid, weight, name, selected}) => {
         color="foreground">
 
         <Radio
-            value={uuid}
+            value={id}
             color="secondary"
             className="hover:bg-app-bg"
             classNames={{

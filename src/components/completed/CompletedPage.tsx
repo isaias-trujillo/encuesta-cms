@@ -7,7 +7,7 @@ import {
     ModalHeader
 } from "@nextui-org/react";
 
-const Completed: FC = () => {
+const CompletedPage: FC = () => {
     return <ModalContent>
         {(onClose) => (
             <>
@@ -44,4 +44,4 @@ const Completed: FC = () => {
     </ModalContent>
 }
 
-export default Completed
+export default CompletedPage

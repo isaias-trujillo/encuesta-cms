@@ -1,0 +1,16 @@
+/*include font family Roboto locally*/
+@font-face {
+    font-family: 'Roboto Mono', monospace;
+    src: url('fonts/Roboto_Mono/RobotoMono-VariableFont_wght.ttf') format('truetype');
+    font-face-name: 'Roboto Mono';
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Mono', monospace;
+    src: url('fonts/Roboto_Mono/RobotoMono-Italic-VariableFont_wght.ttf') format('truetype');
+    font-face-name: 'Roboto Mono';
+    font-weight: 400;
+    font-style: italic;
+}

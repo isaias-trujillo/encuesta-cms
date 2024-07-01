@@ -20,11 +20,11 @@ const Card: FC<Props> = ({indicator, questions = []}) => {
             key={`indicator-${key}-question-${index}`}{...{
             ...q,
             updateAnswer: (answer) => updateAnswer({
-                indicator: indicator.uuid,
+                indicator: indicator.id,
                 question: q.uuid,
                 answer
             }),
-            initialAnswer: answerOf({indicator: indicator.uuid, question: q.uuid})
+            initialAnswer: answerOf({indicator: indicator.id, question: q.uuid})
         }}
         />)}
     </div>

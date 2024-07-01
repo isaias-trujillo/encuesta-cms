@@ -1,7 +1,7 @@
 import QuestionType from "./QuestionType";
 
 type IndicatorType = {
-    uuid: string;
+    id: string;
     image: string;
     name: string;
     questions?: QuestionType[]
