@@ -1,9 +1,7 @@
-import OptionType from "./OptionType";
-
 type QuestionType = {
     id: string;
     question: string;
-    options?: OptionType[];
+    answer?: string;
 }
 
 export default QuestionType;

@@ -2,7 +2,7 @@ import {FC} from "react";
 import {cn, Radio, Tooltip} from "@nextui-org/react";
 import OptionType from "../../types/OptionType";
 
-const Option: FC<OptionType> = ({id, weight, name, selected}) => {
+const Option: FC<OptionType & {selected: boolean}> = ({id, weight, name, selected}) => {
     return <Tooltip
         content={name}
         placement='top'

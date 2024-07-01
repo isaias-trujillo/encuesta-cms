@@ -9,10 +9,10 @@ type SurveyStatus = {
     init: (surveyId: string) => void;
 }
 
-const useSurveyStatus = create<SurveyStatus>(set => ({
+const useStatus = create<SurveyStatus>(set => ({
     loading: false,
     status: 'initial',
-    init: async (surveyId: string) => {
+    init: async (surveyId: string | undefined) => {
         set(() => ({loading: true, status: 'initial'}));
         // get surveyId from URL e.g. /survey?id=1
         if (!surveyId) {
@@ -20,12 +20,13 @@ const useSurveyStatus = create<SurveyStatus>(set => ({
             return;
         }
         const result = await verifyIfSurveyIsCompleted(surveyId);
-        if (result.status === 'error') {
-            set(() => ({loading: false, status: 'error', message: result.error}));
+        if (result.status === 'not found') {
+            set(() => ({loading: false, status: 'not found', message: result.error}));
             return;
         }
-        if (result.status === 'not found') {
-            set(() => ({loading: false, status: 'not found'}));
+        if (result.status === 'error') {
+            console.log("Hello");
+            set(() => ({loading: false, status: 'error', message: result.error}));
             return;
         }
         // survey is in progress or completed
@@ -34,4 +35,4 @@ const useSurveyStatus = create<SurveyStatus>(set => ({
     }
 }))
 
-export default useSurveyStatus;
+export default useStatus;

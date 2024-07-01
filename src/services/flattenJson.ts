@@ -1,22 +1,26 @@
+import SurveyFormResponse from "../types/SurveyFormResponse";
+
 type FlattenedObject = {
     'indicator id': string;
     'question id': string;
     'option id': string;
 };
 
-const flattenJson = (json: Record<PropertyKey, Record<PropertyKey, string>>): FlattenedObject[] => {
+const flattenJson = (questionnaire: SurveyFormResponse['questionnaire']): FlattenedObject[] => {
     const result: FlattenedObject[] = [];
 
-    for (const indicatorId in json) {
-        const questions = json[indicatorId];
-        for (const questionId in questions) {
+    questionnaire.forEach(indicator => {
+        indicator.questions.forEach(question => {
+            if (!question.answer){
+                return;
+            }
             result.push({
-                'indicator id': indicatorId,
-                'question id': questionId,
-                'option id': questions[questionId]
+                'indicator id': indicator.id,
+                'question id': question.id,
+                'option id': question.answer,
             });
-        }
-    }
+        });
+    });
 
     return result;
 };

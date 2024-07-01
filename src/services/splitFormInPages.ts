@@ -1,10 +1,13 @@
-const splitFormInPages = (indicators: Indicator[]): Page[] => {
+import SurveyFormResponse from "../types/SurveyFormResponse";
+
+const splitFormInPages = (response?: SurveyFormResponse): Page[] => {
+    if (!response) return [];
     const maxQuestionsPerPage = 5;
     const pages: Page[] = [];
-    let currentPage: Page = { indicators: [], totalQuestions: 0 };
+    let currentPage: Page = {indicators: [], totalQuestions: 0};
 
-    for (const indicator of indicators) {
-        let currentIndicator: Indicator = { ...indicator, questions: [] };
+    for (const indicator of response.questionnaire ?? []) {
+        let currentIndicator: Indicator = {...indicator, questions: []};
 
         for (const question of indicator.questions) {
             if (currentPage.totalQuestions < maxQuestionsPerPage) {
@@ -15,8 +18,8 @@ const splitFormInPages = (indicators: Indicator[]): Page[] => {
                     currentPage.indicators.push(currentIndicator);
                 }
                 pages.push(currentPage);
-                currentPage = { indicators: [], totalQuestions: 0 };
-                currentIndicator = { ...indicator, questions: [question] };
+                currentPage = {indicators: [], totalQuestions: 0};
+                currentIndicator = {...indicator, questions: [question]};
                 currentPage.totalQuestions = 1;
             }
         }
@@ -36,7 +39,7 @@ const splitFormInPages = (indicators: Indicator[]): Page[] => {
 interface Question {
     id: string;
     question: string;
-    answer: string | null;
+    answer?: string;
 }
 
 interface Indicator {
@@ -50,3 +53,5 @@ interface Page {
     indicators: Indicator[];
     totalQuestions: number;
 }
+
+export default splitFormInPages

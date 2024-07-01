@@ -1,34 +1,37 @@
-import {FC, useMemo} from "react";
+import {FC, useEffect} from "react";
 import {Button, Image, Modal, useDisclosure} from "@nextui-org/react";
-import useSurvey from "../../stores/useSurvey.ts";
 import CompletedPage from "../completed";
+import useNavigation from "../../stores/useNavigation.ts";
 
 const Navigation: FC = () => {
-    const {page, maxPages, nextPage, previousPage} = useSurvey();
-    const isTheLastPage = useMemo(() => page == maxPages(), [page]);
+    const {next, previous, init, isFirst, isLast} = useNavigation();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    return <div className={page === 1 ? "flex justify-end" : "flex justify-between"}>
-        {page !== 1 && <Button
+    useEffect(() => {
+        init();
+    }, [init]);
+
+    return <div className={isFirst() ? "flex justify-end" : "flex justify-between"}>
+        {!isFirst() && <Button
             className="text-white font-medium text-base font-['Outfit'] bg-dark-blue px-[25px] py-6 rounded-2xl justify-center items-center gap-2.5 inline-flex  shadow-lg"
-            disabled={page == 1}
+            disabled={isFirst()}
             startContent={<Image src="/icons/arrow_back_ios_20dp_FILL0_wght400_GRAD0_opsz20.svg"/>}
-            onClick={previousPage}
+            onClick={previous}
         >Atrás</Button>}
         <>
             <Button
                 className={
-                    `${isTheLastPage ? "bg-gradient-to-tr from-pink-500 to-yellow-500" : "bg-dark-blue"}
+                    `${isLast() ? "bg-gradient-to-tr from-pink-500 to-yellow-500" : "bg-dark-blue"}
                         text-white font-medium text-base font-['Outfit'] bg-dark-blue px-[25px] py-6 rounded-2xl justify-center items-center gap-2.5 inline-flex shadow-lg`
                 }
-                disabled={isTheLastPage}
-                onPress={isTheLastPage ? onOpen : nextPage}
+                disabled={isLast()}
+                onPress={isLast() ? onOpen : next}
                 endContent={<Image src={
-                    isTheLastPage
+                    isLast()
                         ? "/icons/send_20dp_FILL0_wght400_GRAD0_opsz20.svg"
                         : "/icons/arrow_forward_ios_20dp_FILL0_wght400_GRAD0_opsz20.svg"
                 }/>}
-            >{isTheLastPage ? "Enviar" : "Siguiente"}</Button>
+            >{isLast() ? "Enviar" : "Siguiente"}</Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <CompletedPage/>
             </Modal>

@@ -37,7 +37,7 @@ type Questionnaire = {
 type Question = {
     id: string
     question: string
-    answer: string;
+    answer?: string;
 }
 
 export default SurveyFormResponse;

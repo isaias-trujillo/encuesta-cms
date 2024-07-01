@@ -1,22 +1,25 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {cn, RadioGroup} from "@nextui-org/react";
 import Option from "./../option";
 import QuestionType from "../../types/QuestionType";
+import useForm from "../../stores/useForm.ts";
+import useReplier from "../../stores/useReplier.ts";
 
-type Props = QuestionType & {
-    updateAnswer: (answer: string) => void;
-    initialAnswer: string | undefined;
-}
+const Question: FC<QuestionType & { indicatorId: string }> = ({id, question, indicatorId}) => {
+    const options = useForm(state => state.data()?.options ?? []);
+    const replier = useReplier();
+    const [selected, setSelected] = useState(replier.current(indicatorId, id));
 
-const Question: FC<Props> = ({id, question, options, initialAnswer, updateAnswer}) => {
-    const [selectedOption, setSelectedOption] = useState<string | undefined>(initialAnswer);
+    useEffect(() => {
+        setSelected(() => replier.current(indicatorId, id));
+    }, [id, indicatorId, replier])
+
     return <div className="flex flex-col gap-2.5">
         <RadioGroup
             label={question}
-            defaultValue={initialAnswer}
+            defaultValue={selected}
             onValueChange={(v) => {
-                setSelectedOption(() => v);
-                updateAnswer(v);
+                replier.next(indicatorId, id, v);
             }}
             className="flex max-w-full gap-2.5"
             orientation="horizontal"
@@ -30,12 +33,12 @@ const Question: FC<Props> = ({id, question, options, initialAnswer, updateAnswer
             {options?.map(option => <Option
                 key={`question-${id}-option-${option.id}`} {...{
                 ...option,
-                selected: selectedOption === option.id
+                selected: selected === option.id
             }}/>)}
             <span className="max-sm:hidden text-black max-md:text-sm font-normal font-['Roboto']">De acuerdo</span>
             <img src="/icons/Happy.svg" alt="Positive" className="max-sm:max-w-8 max-w-10 sm:hidden"/>
         </RadioGroup>
-        <p className="sm:hidden text-black max-md:text-sm font-normal font-['Roboto'] text-center">{options?.find(o => o.uuid == selectedOption)?.name ?? ""}</p>
+        <p className="sm:hidden text-black max-md:text-sm font-normal font-['Roboto'] text-center">{options?.find(o => o?.id == selected)?.name ?? ""}</p>
     </div>
 }
 
