@@ -1,6 +1,6 @@
 import SurveyFormResponse from "../types/SurveyFormResponse";
 import {create} from "zustand";
-import getSurveyForm from "../services/getSurveyForm.ts";
+import getRemoteSurveyForm from "../services/getRemoteSurveyForm.ts";
 
 type SurveyForm = {
     loading: boolean,
@@ -10,10 +10,19 @@ type SurveyForm = {
     data: () => SurveyFormResponse | undefined;
 }
 
-const useForm = create<SurveyForm>((set) => ({
+const retrieveLocalForm = () => {
+    const item = localStorage.getItem('cms-survey-form-2024');
+    if (!item) {
+        return undefined;
+    }
+    return JSON.parse(item) as SurveyFormResponse
+};
+
+const useForm = create<SurveyForm>((set, get) => ({
     loading: false,
     status: 'initial',
     init: async () => {
+        // get surveyId from URL e.g. /survey?id=1
         const surveyId = new URLSearchParams(window.location.search).get('id') ?? undefined;
         if (!surveyId) {
             set(() => ({
@@ -24,40 +33,28 @@ const useForm = create<SurveyForm>((set) => ({
             return;
         }
         // check if already loaded
-        const localForm = localStorage.getItem('cms-survey-form-2024');
-        if (localForm !== undefined && localForm !== null) {
+        const localForm = get().data();
+        if (localForm) {
             // if the survey id is the same, don't load again
-            const parsedForm = JSON.parse(localForm);
-            if (parsedForm.surveyId === surveyId) {
-                set(() => ({loading: false, status: 'success', form: parsedForm}));
+            if (localForm.survey.id === surveyId) {
+                set(() => ({loading: false, status: 'success'}));
                 return;
             }
-            // otherwise, remove the old form
-            localStorage.removeItem('cms-survey-form-2024');
+            // otherwise, clear the local storage
+            localStorage.clear()
         }
         set(() => ({loading: true, status: 'initial'}));
-        // get surveyId from URL e.g. /survey?id=1
-        if (!surveyId) {
-            set(() => ({loading: false, status: 'error', message: 'Survey ID not found'}));
-            return;
-        }
-        const response = await getSurveyForm(surveyId);
-        if (response.status === 'error') {
+        const response = await getRemoteSurveyForm(surveyId);
+        if (response.status === 'error' || !!response.error) {
             set(() => ({loading: false, status: 'error', message: response.error}));
             return;
         }
         // save form to local storage
         localStorage.setItem('cms-survey-form-2024', JSON.stringify(response));
         // survey form found
-        set(() => ({loading: false, status: 'success'}));
+        set(() => ({loading: false, status: 'success', data: retrieveLocalForm}));
     },
-    data: () => {
-        const item = localStorage.getItem('cms-survey-form-2024');
-        if (!item) {
-            return undefined;
-        }
-        return JSON.parse(item) as SurveyFormResponse
-    }
+    data: retrieveLocalForm,
 }))
 
 export default useForm;

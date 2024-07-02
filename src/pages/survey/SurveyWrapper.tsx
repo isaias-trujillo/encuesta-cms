@@ -2,6 +2,7 @@ import useStatus from "../../stores/useStatus.ts";
 import {FC, ReactNode, useEffect} from "react";
 import ErrorPage from "../error";
 import LoadingPage from "../loading/LoadingPage.tsx";
+import CompletedPage from "../completed";
 
 const SurveyWrapper: FC<{children: ReactNode}> = ({children}) => {
     const init = useStatus(state => state.init);
@@ -33,7 +34,7 @@ const SurveyWrapper: FC<{children: ReactNode}> = ({children}) => {
     }
 
     if (status === 'completed') {
-        return <div>Survey has been completed</div>;
+        return <CompletedPage/>
     }
 
     return children

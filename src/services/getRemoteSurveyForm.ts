@@ -1,4 +1,4 @@
-const getSurveyForm = async (surveyId: string) => {
+const getRemoteSurveyForm = async (surveyId: string) => {
     return fetch(`http://127.0.0.1:8000/api/satisfaction-survey/${surveyId}/form`)
         .then(response => response.json())
         .catch(error => ({
@@ -7,4 +7,4 @@ const getSurveyForm = async (surveyId: string) => {
         }));
 }
 
-export default getSurveyForm;
+export default getRemoteSurveyForm;
