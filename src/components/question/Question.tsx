@@ -19,6 +19,7 @@ const Question: FC<QuestionType & { indicatorId: string }> = ({id, question, ind
             label={question}
             defaultValue={selected}
             onValueChange={(v) => {
+                setSelected(() => v);
                 replier.next(indicatorId, id, v);
             }}
             className="flex max-w-full gap-2.5"
