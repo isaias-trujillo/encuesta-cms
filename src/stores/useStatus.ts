@@ -19,17 +19,17 @@ const useStatus = create<SurveyStatus>(set => ({
         set(() => ({loading: true, status: 'initial'}));
         // get surveyId from URL e.g. /survey?id=1
         if (!surveyId) {
-            set(() => ({loading: false, status: 'not found'}));
+            set(() => ({loading: false, status: 'not found', message: 'No se encontró la encuesta.'}));
             return;
         }
         const result = await verifyIfSurveyIsCompleted(surveyId);
         if (result.status === 'not found') {
-            set(() => ({loading: false, status: 'not found', message: result.error}));
+            set(() => ({loading: false, status: 'not found', message: result?.error ?? result.message}));
             return;
         }
         if (result.status === 'error') {
             console.log("Hello");
-            set(() => ({loading: false, status: 'error', message: result.error}));
+            set(() => ({loading: false, status: 'error', message: result?.error ?? result.message}));
             return;
         }
         if (result.status === 'completed') {
