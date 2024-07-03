@@ -7,15 +7,6 @@ export default {
         "./src/**/*.{js,ts,jsx,tsx}",
         "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
     ],
-    theme: {
-        extend: {
-            colors: {
-                'dark-blue': '#11004d',
-                'bright-orange': '#FDAB00',
-                'container': '#FFF0EB'
-            }
-        },
-    },
     darkMode: "class",
     plugins: [
         nextui({
@@ -26,15 +17,34 @@ export default {
             layout: {}, // common layout tokens (applied to all themes)
             themes: {
                 light: {
-                    layout: {}, // light theme layout tokens
-                    colors: {}, // light theme colors
+                    layout: {},
+                    colors: {
+                        'app-bg': 'hsl(0,7%,95%)',
+                        'dark-blue': '#11004d',
+                        'bright-orange': '#FDAB00',
+                        'container': 'hsl(14,96%,93%)',
+                        'on-container': 'hsl(14,96%,97%)',
+                        'secondary': {
+                            DEFAULT: '#802d3e',
+                            foreground: '#ffe2e8',
+                        },
+                    }
                 },
                 dark: {
-                    layout: {}, // dark theme layout tokens
-                    colors: {}, // dark theme colors
-                },
-                // ... custom themes
-            },
+                    layout: {},
+                    colors: {
+                        'app-bg': 'hsl(0,7%,10%)',
+                        'dark-blue': '#11004d',
+                        'bright-orange': '#FDAB00',
+                        'container': 'hsl(41,0%,25%)',
+                        'on-container': 'hsla(41,0%,85%, 0.2)',
+                        'secondary': {
+                            DEFAULT: '#ffe2e8',
+                            foreground: '#802d3e',
+                        },
+                    }
+                }
+            }
         }),
     ],
 }

@@ -1,0 +1,13 @@
+.animatic {
+    -webkit-animation: up-to-down 3s infinite  alternate ease-in-out;
+    animation: up-to-down 3s infinite alternate ease-in-out;
+}
+
+@-webkit-keyframes up-to-down {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-1rem); }
+}
+@keyframes up-to-down {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-1rem); }
+}
