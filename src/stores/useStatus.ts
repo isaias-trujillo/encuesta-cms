@@ -38,7 +38,7 @@ const useStatus = create<SurveyStatus>(set => ({
             localStorage.clear();
             return;
         }
-        set(() => ({loading: false, status: result.status, surveyId}));
+        set(() => ({loading: false, status: 'in progress', surveyId}));
         return;
     },
     tryFinish: async () => {

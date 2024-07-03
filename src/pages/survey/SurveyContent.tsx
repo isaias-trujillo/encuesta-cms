@@ -13,9 +13,7 @@ const SurveyContent: FC = () => {
     const page = useNavigation(state => state.page);
     const {loading, status, message, init} = useForm();
     const data = useForm(state => state.data);
-    const slice = useMemo(() => {
-        return splitFormInPages(data())[page - 1]
-    }, [data, page]);
+    const slice = splitFormInPages(data())[page - 1];
 
     useEffect(() => {
         init();

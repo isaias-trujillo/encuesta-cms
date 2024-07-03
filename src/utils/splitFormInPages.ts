@@ -1,6 +1,7 @@
 import SurveyFormResponse from "../types/SurveyFormResponse";
 
 const splitFormInPages = (response?: SurveyFormResponse): Page[] => {
+    console.log("Recomputing splitFormInPages")
     if (!response) return [];
     const maxQuestionsPerPage = 5;
     const pages: Page[] = [];
