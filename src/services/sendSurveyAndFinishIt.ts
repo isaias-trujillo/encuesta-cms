@@ -1,7 +1,10 @@
 import SurveyFormResponse from "../types/SurveyFormResponse";
-import flattenJson from "./flattenJson.ts";
+import flattenJson from "../utils/flattenJson.ts";
+import environment from "../environment.ts";
 
-const sendSurveyAndFinishIt = (data: SurveyFormResponse) => fetch(`http://127.0.0.1:8000/api/satisfaction-survey/${data.survey.id}/finish`, {
+const {api} = environment();
+
+const sendSurveyAndFinishIt = (data: SurveyFormResponse) => fetch(`${api}/satisfaction-survey/${data.survey.id}/finish`, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

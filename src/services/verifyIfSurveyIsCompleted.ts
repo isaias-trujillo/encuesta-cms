@@ -1,9 +1,12 @@
+import environment from "../environment.ts";
+
 const verifyIfSurveyIsCompleted = async (surveyId: string) => {
-    return fetch(`http://127.0.0.1:8000/api/satisfaction-survey/${surveyId}/status`)
+    const {api} = environment();
+    return fetch(`${api}/satisfaction-survey/${surveyId}/status`)
         .then(response => response.json())
-        .catch(error => ({
+        .catch(() => ({
             status: 'error',
-            error: error.message
+            error: 'Servicio no disponible en este momento. Intente más tarde.  '
         }));
 }
 

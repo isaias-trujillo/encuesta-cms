@@ -1,5 +1,8 @@
+import environment from "../environment.ts";
+
 const getRemoteSurveyForm = async (surveyId: string) => {
-    return fetch(`http://127.0.0.1:8000/api/satisfaction-survey/${surveyId}/form`)
+    const {api} = environment();
+    return fetch(`${api}/satisfaction-survey/${surveyId}/form`)
         .then(response => response.json())
         .catch(error => ({
             status: 'error',

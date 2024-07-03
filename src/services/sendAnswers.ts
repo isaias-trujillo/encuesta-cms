@@ -1,8 +1,10 @@
 import SurveyFormResponse from "../types/SurveyFormResponse";
-import flattenJson from "./flattenJson.ts";
+import flattenJson from "../utils/flattenJson.ts";
+import environment from "../environment.ts";
 
 const sendAnswers = async (data: SurveyFormResponse) => {
-    return fetch(`http://127.0.0.1:8000/api/satisfaction-survey/${data.survey.id}/answers`, {
+    const {api} = environment();
+    return fetch(`${api}/satisfaction-survey/${data.survey.id}/answers`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

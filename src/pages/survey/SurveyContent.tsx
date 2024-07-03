@@ -4,7 +4,7 @@ import Card from "../../components/card";
 import Navigation from "../../components/navigation";
 import useForm from "../../stores/useForm.ts";
 import ErrorPage from "../error";
-import splitFormInPages from "../../services/splitFormInPages.ts";
+import splitFormInPages from "../../utils/splitFormInPages.ts";
 import useNavigation from "../../stores/useNavigation.ts";
 import LoadingPage from "../loading/LoadingPage.tsx";
 
