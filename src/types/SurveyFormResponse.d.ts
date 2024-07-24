@@ -13,12 +13,13 @@ type Patient = {
 
 type Survey = {
     id: string
-    status: string
+    status: string;
 }
 
 type Service = {
     id: string
     name: string
+    'care date'?: string
 }
 
 type Option = {

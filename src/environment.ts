@@ -9,7 +9,7 @@ const environments = {
 
 // multi environment support added
 const environment = () => {
-    return environments.dev;
+    return environments.prod;
 }
 
 export default environment

@@ -10,7 +10,7 @@ type SurveyForm = {
     data: () => SurveyFormResponse | undefined;
 }
 
-const retrieveLocalForm = () => {
+export const retrieveLocalForm = () => {
     const item = localStorage.getItem('cms-survey-form-2024');
     if (!item) {
         return undefined;

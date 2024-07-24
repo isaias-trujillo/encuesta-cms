@@ -1,4 +1,4 @@
-import {FC, useEffect, useId, useMemo} from "react";
+import {FC, useEffect, useId} from "react";
 import Header from "../../components/header";
 import Card from "../../components/card";
 import Navigation from "../../components/navigation";
@@ -13,9 +13,7 @@ const SurveyContent: FC = () => {
     const page = useNavigation(state => state.page);
     const {loading, status, message, init} = useForm();
     const data = useForm(state => state.data);
-    const slice = useMemo(() => {
-        return splitFormInPages(data())[page - 1]
-    }, [data, page]);
+    const slice = splitFormInPages(data())[page - 1];
 
     useEffect(() => {
         init();
