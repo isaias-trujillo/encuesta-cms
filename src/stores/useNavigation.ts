@@ -8,6 +8,8 @@ type Navigation = {
     next: () => void;
     isLast: () => boolean;
     isFirst: () => boolean;
+    status?: 'has missing questions' | 'all question is missing' | 'no missing questions'
+    message?: string;
 }
 
 const useNavigation = create<Navigation>((set, get) => ({

@@ -4,11 +4,14 @@ import Option from "./../option";
 import QuestionType from "../../types/QuestionType";
 import useForm from "../../stores/useForm.ts";
 import useReplier from "../../stores/useReplier.ts";
+import useNavigation from "../../stores/useNavigation.ts";
 
 const Question: FC<QuestionType & { indicatorId: string }> = ({id, question, indicatorId}) => {
     const options = useForm(state => state.data()?.options ?? []);
     const replier = useReplier();
     const [selected, setSelected] = useState(replier.current(indicatorId, id));
+    const {page} = useNavigation(state => state);
+
 
     useEffect(() => {
         setSelected(() => replier.current(indicatorId, id));
@@ -20,7 +23,7 @@ const Question: FC<QuestionType & { indicatorId: string }> = ({id, question, ind
             defaultValue={selected}
             onValueChange={(v) => {
                 setSelected(() => v);
-                replier.next(indicatorId, id, v);
+                replier.next(indicatorId, id, v, page);
             }}
             className="flex max-w-full gap-2.5"
             orientation="horizontal"
