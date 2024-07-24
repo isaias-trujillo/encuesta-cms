@@ -28,7 +28,6 @@ const useStatus = create<SurveyStatus>(set => ({
             return;
         }
         if (result.status === 'error') {
-            console.log("Hello");
             set(() => ({loading: false, status: 'error', message: result?.error ?? result.message}));
             return;
         }
