@@ -1,4 +1,4 @@
-import {FC, useEffect, useId, useMemo} from "react";
+import {FC, useEffect, useId} from "react";
 import Header from "../../components/header";
 import Card from "../../components/card";
 import Navigation from "../../components/navigation";

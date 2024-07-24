@@ -5,6 +5,10 @@ import {Image} from "@nextui-org/react";
 const CompletedPage: FC = () => {
     return <div
         className="flex max-md:flex-wrap-reverse lg:flex-row justify-center items-center place-content-center w-[100svw] h-[100svh] lg:px-20 md:px-10 px-5 lg:py-5 md:py-2.5 py-1 bg-black">
+        <div
+            className="absolute top-0 left-0 w-full h-fullz-0  lg:px-20 md:px-10 px-5 lg:py-5  py-2.5">
+            <Image src="/pics/logo_cms_aniversario.png" className="max-h-20" alt="Logo de la Clínica"/>
+        </div>
         <div className="flex md:max-h-f ull max-w-full max-h-full">
             <img
                 className={`flex max-w-full max-h-full object-contain ${styles.animatic} z-0 relative aspect-auto`}
@@ -27,7 +31,6 @@ const CompletedPage: FC = () => {
         </div>
         <div
             className="text-white absolute bottom-0 flex flex-col w-full lg:px-20 md:px-10 px-5 lg:py-5  py-2.5 md:text-xl max-md:text-medium text-xs font-normal font-['Roboto']">
-            <Image src="/pics/logo_cms_aniversario.png" className="max-h-20" alt="Logo de la Clínica"/>
             <p className="text-xs">Copyright © 2024 – Clinica Maison de Santé.</p>
             <p className="text-xs">Todos los derechos reservados.</p>
         </div>
