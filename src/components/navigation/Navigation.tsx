@@ -30,8 +30,12 @@ const Navigation: FC = () => {
     const pageMessage = useMemo(() => {
         switch (state) {
             case 'has missing questions':
-            case 'all question is missing':
-                return isLast() ? `Te faltan responder ${overview.missing} preguntas para terminar.` : `Te faltan responder ${overview.missing} preguntas.`;
+            case 'all question is missing': {
+                const count = overview.missing === 1 ? 'una pregunta' : `${overview.missing} preguntas`;
+                return isLast()
+                    ? `Solo te faltan responder ${count} para terminar.`
+                    : `Te faltan responder ${count} para continuar.`;
+            }
             default:
                 return undefined;
         }
