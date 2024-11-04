@@ -54,7 +54,7 @@ const Navigation: FC = () => {
         {
             overview.missing == 0 && isLast() &&
             <div
-                className='inline-flex gap-2.5 items-center bg-[#e5f6ff] text-black font-medium py-2.5 px-5 rounded-xl w-fit'>
+                className='inline-flex gap-2.5 items-center bg-[#e5f6ff] text-black font-medium py-2.5 px-5 rounded-xl w-fit '>
                 <img
                     className='w-5 h-5'
                     src="https://cdn-icons-png.flaticon.com/512/17002/17002169.png"
